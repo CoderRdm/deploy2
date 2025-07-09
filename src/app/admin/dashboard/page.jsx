@@ -65,6 +65,7 @@ export default function AdminDashboardPage() {
                     <ul className="space-y-3">
                         <li><button onClick={() => handleNavigation('/admin/students')} className="w-full text-left py-3 px-4 rounded-lg transition hover:bg-gray-700 hover:text-white">Manage Students</button></li>
                         <li><button onClick={() => handleNavigation('/admin/students/available')} className="w-full text-left py-3 px-4 rounded-lg transition hover:bg-gray-700 hover:text-white">View Available Students</button></li>
+                        <li><button onClick={() => handleNavigation('/admin/placement-tracking')} className="w-full text-left py-3 px-4 rounded-lg transition hover:bg-gray-700 hover:text-white">Placement Tracking</button></li>
                         <li><button onClick={() => handleNavigation('/admin/announcements')} className="w-full text-left py-3 px-4 rounded-lg transition hover:bg-gray-700 hover:text-white">Manage Announcements</button></li>
                         <li><button onClick={() => handleNavigation('/admin/recruiters')} className="w-full text-left py-3 px-4 rounded-lg transition hover:bg-gray-700 hover:text-white">Recruiter Dashboard</button></li>
                     </ul>

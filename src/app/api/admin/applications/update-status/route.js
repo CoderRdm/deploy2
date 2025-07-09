@@ -1,6 +1,7 @@
 // src/app/api/admin/applications/update-status/route.js
 import { JobPost } from "@/lib/models/JobPost";
 import { InternshipPost } from "@/lib/models/InternshipPost";
+import { Student } from "@/lib/models/Student";
 import connectToDb from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -49,7 +50,7 @@ export async function PATCH(request) {
             );
         }
 
-        // Update the application status
+        // Update the application status in the post
         const updatedPost = await Model.findOneAndUpdate(
             { 
                 _id: postId,
@@ -73,12 +74,53 @@ export async function PATCH(request) {
             app => app._id.toString() === applicationId
         );
 
+        if (!updatedApplication) {
+            return NextResponse.json(
+                { success: false, message: 'Application not found after update' },
+                { status: 404 }
+            );
+        }
+
+        // Update the corresponding entry in the student's companyApplications
+        const studentId = updatedApplication.student._id;
+        const companyName = postType === 'job' ? updatedPost.organizationName : updatedPost.organizationName;
+        const position = postType === 'job' ? updatedPost.jobDesignation : updatedPost.internshipProfile;
+        
+        // Update student record with new status
+        const applicationField = postType === 'job' ? 'companyApplications.jobs' : 'companyApplications.internships';
+        
+        const studentUpdateResult = await Student.findOneAndUpdate(
+            {
+                _id: studentId,
+                [`${applicationField}.postId`]: postId
+            },
+            {
+                $set: {
+                    [`${applicationField}.$.currentStatus`]: newStatus
+                },
+                $push: {
+                    [`${applicationField}.$.statusHistory`]: {
+                        status: newStatus,
+                        updatedDate: new Date(),
+                        updatedBy: session.user.email || 'Admin',
+                        notes: `Status updated by admin to ${newStatus}`
+                    }
+                }
+            },
+            { new: true }
+        );
+
+        if (!studentUpdateResult) {
+            console.warn(`Could not update student record for ${studentId} - ${postType} application`);
+        }
+
         return NextResponse.json({
             success: true,
             message: `Application status updated to ${newStatus}`,
             data: {
                 application: updatedApplication,
-                post: updatedPost
+                post: updatedPost,
+                studentUpdated: !!studentUpdateResult
             }
         });
 

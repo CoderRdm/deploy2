@@ -154,25 +154,42 @@ export default function CompaniesSection() {
                                         .slice(0, 10)
                                         .map((application, index) => (
                                         <div key={index} className="border border-gray-200 rounded-lg p-4">
-                                            <div className="flex justify-between items-start">
-                                                <div className="flex-1">
+                                        <div className="flex justify-between items-start">
+                                            <div className="flex-1">
+                                                <div className="flex items-center space-x-2">
                                                     <h5 className="font-medium text-gray-900">{application.companyName}</h5>
-                                                    <p className="text-sm text-gray-600">{application.position}</p>
-                                                    <p className="text-xs text-gray-500 mt-1">
-                                                        Applied on {formatDate(application.appliedDate)}
+                                                    {application.currentStatus === 'Selected' && (
+                                                        <span className="inline-flex items-center">
+                                                            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                            </svg>
+                                                            <span className="text-xs font-bold text-green-600 ml-1">SELECTED!</span>
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <p className="text-sm text-gray-600">{application.position}</p>
+                                                <p className="text-xs text-gray-500 mt-1">
+                                                    Applied on {formatDate(application.appliedDate)}
+                                                </p>
+                                                {application.currentStatus === 'Selected' && (
+                                                    <p className="text-xs text-green-600 mt-1 font-medium">
+                                                        🎉 Congratulations! You have been selected by this company.
                                                     </p>
-                                                </div>
-                                                <div className="flex flex-col items-end space-y-2">
-                                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(application.currentStatus)}`}>
-                                                        {application.currentStatus}
-                                                    </span>
-                                                    <span className={`px-2 py-1 rounded text-xs ${
-                                                        jobApplications.includes(application) ? 'bg-blue-100 text-blue-800' : 'bg-orange-100 text-orange-800'
-                                                    }`}>
-                                                        {jobApplications.includes(application) ? 'Job' : 'Internship'}
-                                                    </span>
-                                                </div>
+                                                )}
                                             </div>
+                                            <div className="flex flex-col items-end space-y-2">
+                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(application.currentStatus)} ${
+                                                    application.currentStatus === 'Selected' ? 'ring-2 ring-green-200 shadow-md' : ''
+                                                }`}>
+                                                    {application.currentStatus}
+                                                </span>
+                                                <span className={`px-2 py-1 rounded text-xs ${
+                                                    jobApplications.includes(application) ? 'bg-blue-100 text-blue-800' : 'bg-orange-100 text-orange-800'
+                                                }`}>
+                                                    {jobApplications.includes(application) ? 'Job' : 'Internship'}
+                                                </span>
+                                            </div>
+                                        </div>
                                             
                                             {/* Status History */}
                                             {application.statusHistory && application.statusHistory.length > 1 && (
