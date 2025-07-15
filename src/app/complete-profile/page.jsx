@@ -116,15 +116,43 @@ export default function CompleteProfilePage() {
                 </div>
                 <div>
                     <label htmlFor="branch">Branch:</label>
-                    <input
-                        type="text"
+                    <select
                         id="branch"
                         name="branch"
                         value={formData.branch}
                         onChange={handleChange}
                         required
                         style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
-                    />
+                    >
+                        <option value="">Select Branch</option>
+                        {/* Short forms (common usage) */}
+                        <option value="CSE">Computer Science & Engineering (CSE)</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="ECE">Electronics & Communication Engineering (ECE)</option>
+                        <option value="EEE">Electrical & Electronics Engineering (EEE)</option>
+                        <option value="EE">Electrical Engineering (EE)</option>
+                        <option value="Mechanical">Mechanical Engineering</option>
+                        <option value="Civil">Civil Engineering</option>
+                        <option value="Chemical">Chemical Engineering</option>
+                        <option value="Automobile">Automobile Engineering</option>
+                        <option value="Environmental">Environmental Engineering</option>
+                        <option value="Design">Design Engineering</option>
+                        <option value="Biotechnology">Biotechnology</option>
+                        <option value="Aerospace">Aerospace Engineering</option>
+                        <option value="Petroleum">Petroleum Engineering</option>
+                        <option value="Mining">Mining Engineering</option>
+                        <option value="Metallurgy">Metallurgy</option>
+                        <option value="Production">Production Engineering</option>
+                        <option value="Industrial">Industrial Engineering</option>
+                        <option value="Agricultural">Agricultural Engineering</option>
+                        {/* Full forms for compatibility */}
+                        <option value="Computer Science & Engineering">Computer Science & Engineering (Full)</option>
+                        <option value="Information Technology">Information Technology (Full)</option>
+                        <option value="Electronics & Communication Engineering">Electronics & Communication Engineering (Full)</option>
+                        <option value="Electrical Engineering">Electrical Engineering (Full)</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering (Full)</option>
+                        <option value="Civil Engineering">Civil Engineering (Full)</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="gender">Gender:</label>
