@@ -60,6 +60,11 @@ docker-compose logs
 - **Database UI**: http://localhost:8081 (admin/admin123)
 - **Database**: localhost:27017
 
+### 🔐 Authentication Options
+- **Google OAuth**: For students with @mnit.ac.in emails
+- **Credentials**: For admins, recruiters, and students
+- **Setup Google OAuth**: Add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to .env.local
+
 ### 📁 Important Files
 - `docker-compose.yml` - Main configuration
 - `.env.local` - Your environment settings

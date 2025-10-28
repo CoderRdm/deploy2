@@ -50,6 +50,8 @@ services:
       - MONGODB_URI=mongodb://admin:password123@mongodb:27017/placement_portal?authSource=admin
       - NEXTAUTH_URL=http://localhost:3000
       - NEXTAUTH_SECRET=your-secret-key-change-this-in-production
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
     volumes:
       - ./public/uploads:/app/public/uploads
       - app_data:/app/data

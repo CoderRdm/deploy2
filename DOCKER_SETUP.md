@@ -77,10 +77,31 @@ MONGODB_URI=mongodb://admin:password123@localhost:27017/placement_portal?authSou
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-secret-key-change-this-in-production
 
+# Google OAuth Configuration
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
 # Admin Configuration
 ADMIN_EMAIL=admin@college.edu
 ADMIN_PASSWORD=admin123
 ```
+
+### Google OAuth Setup
+
+To enable Google OAuth login:
+
+1. **Go to Google Cloud Console**: https://console.cloud.google.com/
+2. **Create a new project** or select existing one
+3. **Enable Google+ API**
+4. **Create OAuth 2.0 credentials**:
+   - Application type: Web application
+   - Authorized redirect URIs: `http://localhost:3000/api/auth/callback/google`
+5. **Copy Client ID and Client Secret** to your `.env.local` file
+
+**Important Notes:**
+- Only `@mnit.ac.in` email addresses can sign in with Google
+- Admin/SPC accounts must use credentials login (not Google OAuth)
+- Students can use either Google OAuth or credentials
 
 ### Docker Services
 
