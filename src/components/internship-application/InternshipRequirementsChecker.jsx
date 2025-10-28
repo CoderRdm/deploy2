@@ -60,18 +60,20 @@ const InternshipRequirementsChecker = ({ internshipPost, studentProfile, onEligi
         }
 
         const yearMappings = {
-            1: ['1st year', 'first year', 'year 1'],
-            2: ['2nd year', 'second year', 'year 2'],
-            3: ['3rd year', 'third year', 'year 3'],
-            4: ['4th year', 'fourth year', 'year 4', 'final year'],
-            5: ['5th year', 'fifth year', 'year 5']
+            1: ['1st year','1','1st','first year', 'year 1'],
+            2: ['2nd year','2','2nd','second year', 'year 2'],
+            3: ['3rd year','3','3rd','third year', 'year 3'],
+            4: ['4th year','4','4th','fourth year', 'year 4', 'final year'],
+            5: ['5th year','5','5th','fifth year', 'year 5']
         };
 
         const isEligible = eligibleYears.some(year => {
             const yearOptions = yearMappings[studentYear] || [];
             return yearOptions.some(option => 
                 year.toLowerCase().includes(option) || 
-                option.includes(year.toLowerCase())
+                option.includes(year.toLowerCase()) ||
+                year.toLowerCase().includes(option.toLowerCase()) ||
+                option.toLowerCase().includes(year.toLowerCase())
             );
         });
 
