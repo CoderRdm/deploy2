@@ -29,6 +29,16 @@ export default function DevelopmentTeamSection() {
       email: "2022ucp1573@mnit.ac.in",
       skills: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
       icon: Code
+    },{
+      name: "Aryaman Sharma",
+      role: "Software Developer & UI Specialist",
+      image: "https://placehold.co/400x400.png?text=AS",
+      dataAiHint: "developer portrait",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      email: "2022UEE1079@mnit.ac.in",
+      skills: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+      icon: Code
     },
     {
       name: "Aakash Runtani",
